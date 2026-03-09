@@ -1,0 +1,152 @@
+```html id="f7m8px"
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Chúc Mừng 8/3</title>
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+font-family:Arial;
+background:linear-gradient(135deg,#ff9ecb,#ffd6ec);
+overflow:hidden;
+color:white;
+}
+
+.container{
+z-index:2;
+padding:20px;
+}
+
+h1{
+font-size:55px;
+text-shadow:0 0 20px pink;
+animation:glow 2s infinite alternate;
+}
+
+p{
+font-size:22px;
+max-width:600px;
+}
+
+button{
+margin-top:20px;
+padding:15px 30px;
+font-size:18px;
+border:none;
+border-radius:30px;
+background:white;
+color:#ff2e7a;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+}
+
+@keyframes glow{
+from{text-shadow:0 0 10px white;}
+to{text-shadow:0 0 30px pink;}
+}
+
+.heart,.flower{
+position:absolute;
+top:-10px;
+font-size:22px;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+0%{
+transform:translateY(-10vh) rotate(0deg);
+opacity:1;
+}
+100%{
+transform:translateY(110vh) rotate(360deg);
+opacity:0;
+}
+}
+
+.popup{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+color:#ff2e7a;
+padding:30px;
+border-radius:20px;
+display:none;
+box-shadow:0 0 20px rgba(0,0,0,0.2);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>💐 Chúc Mừng Ngày 8/3 💐</h1>
+
+<p>
+Chúc các bạn nữ lớp <b>11A5</b> luôn xinh đẹp,  
+học giỏi, vui vẻ và đạt được mọi ước mơ của mình.  
+Cảm ơn vì đã làm cho lớp chúng ta trở nên tuyệt vời hơn mỗi ngày! ❤️
+</p>
+
+<button onclick="showWish()">🎁 Nhấn để nhận lời chúc</button>
+
+</div>
+
+<div class="popup" id="wishBox">
+<h2>🌸 Chúc bạn một ngày 8/3 thật vui! 🌸</h2>
+<p>Luôn xinh đẹp, hạnh phúc và tỏa sáng nhé! 💖</p>
+</div>
+
+<script>
+
+function createHeart(){
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+heart.style.animationDuration=3+Math.random()*4+"s";
+document.body.appendChild(heart);
+
+setTimeout(()=>{heart.remove()},7000);
+}
+
+function createFlower(){
+let flower=document.createElement("div");
+flower.className="flower";
+flower.innerHTML="🌸";
+flower.style.left=Math.random()*100+"vw";
+flower.style.animationDuration=4+Math.random()*5+"s";
+document.body.appendChild(flower);
+
+setTimeout(()=>{flower.remove()},7000);
+}
+
+setInterval(createHeart,250);
+setInterval(createFlower,400);
+
+function showWish(){
+document.getElementById("wishBox").style.display="block";
+}
+
+</script>
+
+</body>
+</html>
+```
