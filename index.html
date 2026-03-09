@@ -1,11 +1,10 @@
-```html id="f7m8px"
+```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Chúc Mừng 8/3</title>
+<title>11A5 iu dấu</title>
 
 <style>
 
@@ -22,21 +21,33 @@ overflow:hidden;
 color:white;
 }
 
+/* tiêu đề */
+
+.title{
+font-size:60px;
+background:linear-gradient(45deg,#fff,#ff2e7a,#fff);
+background-size:200%;
+-webkit-background-clip:text;
+color:transparent;
+animation:shine 3s linear infinite;
+}
+
+@keyframes shine{
+0%{background-position:0%}
+100%{background-position:200%}
+}
+
 .container{
 z-index:2;
 padding:20px;
-}
-
-h1{
-font-size:55px;
-text-shadow:0 0 20px pink;
-animation:glow 2s infinite alternate;
 }
 
 p{
 font-size:22px;
 max-width:600px;
 }
+
+/* nút */
 
 button{
 margin-top:20px;
@@ -54,15 +65,28 @@ button:hover{
 transform:scale(1.1);
 }
 
-@keyframes glow{
-from{text-shadow:0 0 10px white;}
-to{text-shadow:0 0 30px pink;}
+/* popup */
+
+.popup{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+color:#ff2e7a;
+padding:30px;
+border-radius:20px;
+display:none;
+box-shadow:0 0 30px rgba(0,0,0,0.2);
+z-index:5;
 }
+
+/* trái tim và hoa */
 
 .heart,.flower{
 position:absolute;
 top:-10px;
-font-size:22px;
+font-size:24px;
 animation:fall linear infinite;
 }
 
@@ -77,19 +101,6 @@ opacity:0;
 }
 }
 
-.popup{
-position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-background:white;
-color:#ff2e7a;
-padding:30px;
-border-radius:20px;
-display:none;
-box-shadow:0 0 20px rgba(0,0,0,0.2);
-}
-
 </style>
 </head>
 
@@ -97,24 +108,30 @@ box-shadow:0 0 20px rgba(0,0,0,0.2);
 
 <div class="container">
 
-<h1>💐 Chúc Mừng Ngày 8/3 💐</h1>
+<h1 class="title">💖 11A5 iu dấu 💖</h1>
 
 <p>
-Chúc các bạn nữ lớp <b>11A5</b> luôn xinh đẹp,  
+Chúc các bạn nữ lớp <b>11A5</b> luôn xinh đẹp,
 học giỏi, vui vẻ và đạt được mọi ước mơ của mình.  
-Cảm ơn vì đã làm cho lớp chúng ta trở nên tuyệt vời hơn mỗi ngày! ❤️
+Cảm ơn vì đã làm cho lớp chúng ta trở nên tuyệt vời hơn mỗi ngày! 🌸
 </p>
 
-<button onclick="showWish()">🎁 Nhấn để nhận lời chúc</button>
+<button onclick="showWish()">🎁 Nhấn để nhận bất ngờ</button>
 
 </div>
 
 <div class="popup" id="wishBox">
-<h2>🌸 Chúc bạn một ngày 8/3 thật vui! 🌸</h2>
-<p>Luôn xinh đẹp, hạnh phúc và tỏa sáng nhé! 💖</p>
+<h2>💐 Happy Women's Day 💐</h2>
+<p>Chúc các bạn nữ 11A5 luôn xinh đẹp và hạnh phúc ❤️</p>
 </div>
 
+<audio autoplay loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_4aef7b0c07.mp3" type="audio/mpeg">
+</audio>
+
 <script>
+
+/* trái tim */
 
 function createHeart(){
 let heart=document.createElement("div");
@@ -126,6 +143,8 @@ document.body.appendChild(heart);
 
 setTimeout(()=>{heart.remove()},7000);
 }
+
+/* hoa */
 
 function createFlower(){
 let flower=document.createElement("div");
@@ -141,8 +160,42 @@ setTimeout(()=>{flower.remove()},7000);
 setInterval(createHeart,250);
 setInterval(createFlower,400);
 
+/* popup */
+
 function showWish(){
 document.getElementById("wishBox").style.display="block";
+firework();
+}
+
+/* pháo hoa */
+
+function firework(){
+
+for(let i=0;i<30;i++){
+
+let spark=document.createElement("div");
+spark.innerHTML="✨";
+spark.style.position="absolute";
+spark.style.left="50%";
+spark.style.top="50%";
+spark.style.fontSize="25px";
+
+let x=(Math.random()-0.5)*600;
+let y=(Math.random()-0.5)*600;
+
+spark.animate([
+{transform:"translate(0,0)",opacity:1},
+{transform:`translate(${x}px,${y}px)`,opacity:0}
+],{
+duration:1000
+});
+
+document.body.appendChild(spark);
+
+setTimeout(()=>spark.remove(),1000);
+
+}
+
 }
 
 </script>
