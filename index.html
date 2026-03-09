@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>Thư Chúc 8/3 - 11A5</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 
@@ -17,6 +17,7 @@ font-family:'Quicksand',sans-serif;
 background: linear-gradient(270deg,#ffc0cb,#ffffff,#ffb6c1);
 background-size:600% 600%;
 animation:bgmove 12s ease infinite;
+
 display:flex;
 justify-content:center;
 align-items:center;
@@ -44,26 +45,21 @@ pointer-events:none;
 100%{transform:translateY(110vh) rotate(360deg);}
 }
 
-/* phong bì */
+/* màn hình thư */
+
+#startScreen{
+text-align:center;
+cursor:pointer;
+}
 
 .envelope{
 font-size:90px;
-cursor:pointer;
-transition:transform .5s;
 }
-
-.envelope:hover{
-transform:scale(1.1);
-}
-
-/* hoa trong thư */
 
 .flowers{
 font-size:30px;
-margin-top:-20px;
+margin-top:-10px;
 }
-
-/* chữ click */
 
 .openText{
 margin-top:10px;
@@ -71,26 +67,25 @@ font-size:18px;
 color:#d63384;
 }
 
-/* khu vực lời chúc */
+/* lời chúc */
 
 #wishBox{
+
 position:absolute;
 top:50%;
 left:50%;
 transform:translate(-50%,-50%);
+
 width:80%;
 text-align:center;
-font-size:22px;
+
+font-size:28px;
 color:#c2185b;
+
 font-family:'Dancing Script',cursive;
+
 opacity:0;
-transition:opacity 1.2s;
-}
-
-/* hiệu ứng hiện */
-
-.show{
-opacity:1;
+transition:opacity 1.5s;
 }
 
 </style>
@@ -100,7 +95,7 @@ opacity:1;
 
 <div id="startScreen">
 
-<div class="envelope" id="letter">💌</div>
+<div class="envelope">💌</div>
 
 <div class="flowers">🌸 🌷 🌸</div>
 
@@ -129,28 +124,28 @@ f.style.animationDuration=(6+Math.random()*6)+"s";
 
 document.body.appendChild(f);
 
-setTimeout(()=>{f.remove()},12000);
+setTimeout(()=>f.remove(),12000);
 
 }
 
 setInterval(createFlower,350);
 
 
-/* lời chúc */
+/* nội dung lời chúc */
 
 const wishes=[
 
 "🌸 Chúc mừng ngày Quốc tế Phụ nữ 8/3 🌸",
 
-"Các bạn nam lớp 11A5 xin gửi đến tất cả các bạn nữ lớp 11A5 những lời chúc tốt đẹp nhất.",
+"Các bạn nam lớp 11A5 xin gửi tới tất cả các bạn nữ lớp 11A5 những lời chúc tốt đẹp nhất.",
 
 "Chúc các bạn luôn xinh đẹp, vui vẻ và luôn tỏa sáng theo cách riêng của mình.",
 
-"Cảm ơn các bạn vì đã mang đến cho lớp chúng ta rất nhiều tiếng cười và những kỷ niệm đáng nhớ.",
+"Cảm ơn các bạn vì đã mang đến cho lớp 11A5 rất nhiều tiếng cười và những kỷ niệm đáng nhớ.",
 
-"Hy vọng rằng chúng ta sẽ cùng nhau có thêm thật nhiều khoảnh khắc đẹp trong quãng thời gian học tập tại 11A5.",
+"Hy vọng chúng ta sẽ cùng nhau có thêm thật nhiều khoảnh khắc đẹp trong quãng thời gian học tập tại lớp.",
 
-"🌷 Chúc các bạn có một ngày 8/3 thật hạnh phúc và ý nghĩa 🌷",
+"🌷 Chúc các bạn nữ có một ngày 8/3 thật hạnh phúc và ý nghĩa 🌷",
 
 "— Từ các bạn nam lớp 11A5 —"
 
@@ -163,18 +158,20 @@ const box=document.getElementById("wishBox");
 
 function showWish(){
 
-box.classList.remove("show");
+box.style.opacity=0;
 
 setTimeout(()=>{
 
 box.innerHTML=wishes[index];
 
-box.classList.add("show");
+box.style.opacity=1;
 
 index++;
 
 if(index<wishes.length){
+
 setTimeout(showWish,4000);
+
 }
 
 },1200);
@@ -182,11 +179,11 @@ setTimeout(showWish,4000);
 }
 
 
-/* click mở thư */
+/* mở thư */
 
-document.getElementById("letter").onclick=function(){
+document.getElementById("startScreen").onclick=function(){
 
-document.getElementById("startScreen").style.display="none";
+this.style.display="none";
 
 showWish();
 
