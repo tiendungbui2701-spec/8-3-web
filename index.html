@@ -1,104 +1,96 @@
-```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>11A5 iu dấu</title>
+<title>Thư Chúc 8/3 - 11A5</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 
 body{
 margin:0;
 height:100vh;
+overflow:hidden;
+font-family:'Quicksand',sans-serif;
+
+background: linear-gradient(270deg,#ffc0cb,#ffffff,#ffb6c1);
+background-size:600% 600%;
+animation:bgmove 12s ease infinite;
 display:flex;
 justify-content:center;
 align-items:center;
-text-align:center;
-font-family:Arial;
-background:linear-gradient(135deg,#ff9ecb,#ffd6ec);
-overflow:hidden;
-color:white;
+flex-direction:column;
 }
 
-/* tiêu đề */
-
-.title{
-font-size:60px;
-background:linear-gradient(45deg,#fff,#ff2e7a,#fff);
-background-size:200%;
--webkit-background-clip:text;
-color:transparent;
-animation:shine 3s linear infinite;
+@keyframes bgmove{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
 }
 
-@keyframes shine{
-0%{background-position:0%}
-100%{background-position:200%}
-}
+/* hoa rơi */
 
-.container{
-z-index:2;
-padding:20px;
-}
-
-p{
-font-size:22px;
-max-width:600px;
-}
-
-/* nút */
-
-button{
-margin-top:20px;
-padding:15px 30px;
-font-size:18px;
-border:none;
-border-radius:30px;
-background:white;
-color:#ff2e7a;
-cursor:pointer;
-transition:0.3s;
-}
-
-button:hover{
-transform:scale(1.1);
-}
-
-/* popup */
-
-.popup{
+.flower{
 position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-background:white;
-color:#ff2e7a;
-padding:30px;
-border-radius:20px;
-display:none;
-box-shadow:0 0 30px rgba(0,0,0,0.2);
-z-index:5;
-}
-
-/* trái tim và hoa */
-
-.heart,.flower{
-position:absolute;
-top:-10px;
-font-size:24px;
+top:-20px;
+font-size:22px;
 animation:fall linear infinite;
+pointer-events:none;
 }
 
 @keyframes fall{
-0%{
-transform:translateY(-10vh) rotate(0deg);
-opacity:1;
+0%{transform:translateY(-10px) rotate(0deg);}
+100%{transform:translateY(110vh) rotate(360deg);}
 }
-100%{
-transform:translateY(110vh) rotate(360deg);
+
+/* phong bì */
+
+.envelope{
+font-size:90px;
+cursor:pointer;
+transition:transform .5s;
+}
+
+.envelope:hover{
+transform:scale(1.1);
+}
+
+/* hoa trong thư */
+
+.flowers{
+font-size:30px;
+margin-top:-20px;
+}
+
+/* chữ click */
+
+.openText{
+margin-top:10px;
+font-size:18px;
+color:#d63384;
+}
+
+/* khu vực lời chúc */
+
+#wishBox{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:80%;
+text-align:center;
+font-size:22px;
+color:#c2185b;
+font-family:'Dancing Script',cursive;
 opacity:0;
+transition:opacity 1.2s;
 }
+
+/* hiệu ứng hiện */
+
+.show{
+opacity:1;
 }
 
 </style>
@@ -106,95 +98,97 @@ opacity:0;
 
 <body>
 
-<div class="container">
+<div id="startScreen">
 
-<h1 class="title">💖 11A5 iu dấu 💖</h1>
+<div class="envelope" id="letter">💌</div>
 
-<p>
-Chúc các bạn nữ lớp <b>11A5</b> luôn xinh đẹp,
-học giỏi, vui vẻ và đạt được mọi ước mơ của mình.  
-Cảm ơn vì đã làm cho lớp chúng ta trở nên tuyệt vời hơn mỗi ngày! 🌸
-</p>
+<div class="flowers">🌸 🌷 🌸</div>
 
-<button onclick="showWish()">🎁 Nhấn để nhận bất ngờ</button>
+<div class="openText">Click to open</div>
 
 </div>
 
-<div class="popup" id="wishBox">
-<h2>💐 Happy Women's Day 💐</h2>
-<p>Chúc các bạn nữ 11A5 luôn xinh đẹp và hạnh phúc ❤️</p>
-</div>
 
-<audio autoplay loop>
-<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_4aef7b0c07.mp3" type="audio/mpeg">
-</audio>
+<div id="wishBox"></div>
+
 
 <script>
 
-/* trái tim */
-
-function createHeart(){
-let heart=document.createElement("div");
-heart.className="heart";
-heart.innerHTML="❤️";
-heart.style.left=Math.random()*100+"vw";
-heart.style.animationDuration=3+Math.random()*4+"s";
-document.body.appendChild(heart);
-
-setTimeout(()=>{heart.remove()},7000);
-}
-
-/* hoa */
+/* hoa rơi */
 
 function createFlower(){
-let flower=document.createElement("div");
-flower.className="flower";
-flower.innerHTML="🌸";
-flower.style.left=Math.random()*100+"vw";
-flower.style.animationDuration=4+Math.random()*5+"s";
-document.body.appendChild(flower);
 
-setTimeout(()=>{flower.remove()},7000);
+const f=document.createElement("div");
+
+f.className="flower";
+f.innerHTML="🌸";
+
+f.style.left=Math.random()*100+"vw";
+f.style.fontSize=(16+Math.random()*20)+"px";
+f.style.animationDuration=(6+Math.random()*6)+"s";
+
+document.body.appendChild(f);
+
+setTimeout(()=>{f.remove()},12000);
+
 }
 
-setInterval(createHeart,250);
-setInterval(createFlower,400);
+setInterval(createFlower,350);
 
-/* popup */
+
+/* lời chúc */
+
+const wishes=[
+
+"🌸 Chúc mừng ngày Quốc tế Phụ nữ 8/3 🌸",
+
+"Các bạn nam lớp 11A5 xin gửi đến tất cả các bạn nữ lớp 11A5 những lời chúc tốt đẹp nhất.",
+
+"Chúc các bạn luôn xinh đẹp, vui vẻ và luôn tỏa sáng theo cách riêng của mình.",
+
+"Cảm ơn các bạn vì đã mang đến cho lớp chúng ta rất nhiều tiếng cười và những kỷ niệm đáng nhớ.",
+
+"Hy vọng rằng chúng ta sẽ cùng nhau có thêm thật nhiều khoảnh khắc đẹp trong quãng thời gian học tập tại 11A5.",
+
+"🌷 Chúc các bạn có một ngày 8/3 thật hạnh phúc và ý nghĩa 🌷",
+
+"— Từ các bạn nam lớp 11A5 —"
+
+];
+
+
+let index=0;
+const box=document.getElementById("wishBox");
+
 
 function showWish(){
-document.getElementById("wishBox").style.display="block";
-firework();
+
+box.classList.remove("show");
+
+setTimeout(()=>{
+
+box.innerHTML=wishes[index];
+
+box.classList.add("show");
+
+index++;
+
+if(index<wishes.length){
+setTimeout(showWish,4000);
 }
 
-/* pháo hoa */
-
-function firework(){
-
-for(let i=0;i<30;i++){
-
-let spark=document.createElement("div");
-spark.innerHTML="✨";
-spark.style.position="absolute";
-spark.style.left="50%";
-spark.style.top="50%";
-spark.style.fontSize="25px";
-
-let x=(Math.random()-0.5)*600;
-let y=(Math.random()-0.5)*600;
-
-spark.animate([
-{transform:"translate(0,0)",opacity:1},
-{transform:`translate(${x}px,${y}px)`,opacity:0}
-],{
-duration:1000
-});
-
-document.body.appendChild(spark);
-
-setTimeout(()=>spark.remove(),1000);
+},1200);
 
 }
+
+
+/* click mở thư */
+
+document.getElementById("letter").onclick=function(){
+
+document.getElementById("startScreen").style.display="none";
+
+showWish();
 
 }
 
@@ -202,4 +196,3 @@ setTimeout(()=>spark.remove(),1000);
 
 </body>
 </html>
-```
